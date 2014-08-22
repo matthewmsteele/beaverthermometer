@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Virtual Beaver Thermometer</title>
+  <meta name="description" content="">
+  <meta name="author" content="Matthew M Steele">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/night.css" id="theme">
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  <link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  <h2>The Virtual Beaver Thermometer</h2>
+  <p><img src="assets/img/beaver.png" alt="4"></p>
+
+<h3><em>For all your beaver temperature prediction needs!</em></h3>
+
+</section>
+<section class='' data-state='' id='slide-2'>
+  <h2>How often have you thought to yourself, <em>&quot;I wonder what the internal temperature of a sleeping beaver is?&quot;</em></h2>
+  <p>Who Hasn&#39;t?</p>
+
+</section>
+<section class='' data-state='' id='slide-3'>
+  <h3>But in the the past the answer to that question has always involved trapsing through the woods for hours on end.</h3>
+  <p>And when you finally find one of the <strong><em>furry little rascals</em></strong>, you have the unpleasant task in front of you of getting the vermit to open its mouth and say &quot;<strong>Ahhhhhhhhhh</strong>!&quot;</p>
+
+</section>
+<section class='class' data-state='' id='id'>
+  <h3>Now thanks to the Power of <em>Science</em> and <em>R</em> you can find an answer without getting your shoes dirty!!</h3>
+  <pre><code class="r">time &lt;- 1430
+activity &lt;- 0
+beaverTemp &lt;- PredictTemperature(time=time,activity=activity)
+paste(&quot;The internal temperature of a&quot;,ifelse(activity==1,&quot;active&quot;,&quot;sleeping&quot;),
+      &quot;beaver is&quot;,beaverTemp,&quot;degrees Celsius.&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;The internal temperature of a sleeping beaver is 36.9357586464559 degrees Celsius.&quot;
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-5'>
+  <h2>Now Presenting</h2>
+  <p><img src="assets/img/beaver.png" alt="4"></p>
+
+<h3><a href="http://matthewmsteele.shinyapps.io/beaverThermometer/"><em>The Virtual Beaver Thermometer</em></a></h3>
+
+</section>
+    </div>
+  </div>
+</body>
+  <script src="libraries/frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="libraries/frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'night', 
+    transition: Reveal.getQueryHash().transition || 'default', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: 'libraries/frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: 'libraries/frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'libraries/frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'libraries/frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>

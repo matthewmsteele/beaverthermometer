@@ -1,0 +1,111 @@
+---
+title       : The Virtual Beaver Thermometer 
+subtitle    : For all your beaver temperature prediction needs!
+author      : Matthew M Steele
+job         : 
+logo        : beaver.png
+framework   : revealjs          # {io2012, html5slides, shower, dzslides, ...}
+revealjs: {theme: night, transition: default}
+theme       : simple
+#revealjs    : {theme: moon, transition:cube}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## The Virtual Beaver Thermometer
+![4](assets/img/beaver.png)
+
+### *For all your beaver temperature prediction needs!*
+
+---
+
+## How often have you thought to yourself, *"I wonder what the internal temperature of a sleeping beaver is?"*
+
+Who Hasn't?
+
+---
+
+### But in the the past the answer to that question has always involved trapsing through the woods for hours on end. 
+
+And when you finally find one of the ***furry little rascals***, you have the unpleasant task in front of you of getting the vermit to open its mouth and say "**Ahhhhhhhhhh**!"
+
+--- .class #id 
+
+### Now thanks to the Power of *Science* and *R* you can find an answer without getting your shoes dirty!!
+
+```{r,echo=FALSE}
+# construct data set
+dataSet <- rbind(beaver1,beaver2)
+
+# add non-linear terms
+dataSet[,"NL1"] <- dataSet$time^2
+dataSet[,"NL2"] <- dataSet$time^3
+dataSet[,"NL3"] <- dataSet$time^4
+dataSet[,"NL4"] <- dataSet$time^5
+dataSet[,"NL5"] <- dataSet$time^6
+dataSet[,"NL6"] <- dataSet$time^7
+dataSet[,"NL7"] <- dataSet$time^8
+dataSet[,"NL8"] <- dataSet$time^9
+dataSet[,"NL9"] <- dataSet$time * dataSet$activ
+dataSet[,"NL10"] <- dataSet$time^2 * dataSet$activ
+dataSet[,"NL11"] <- dataSet$time^3 * dataSet$activ
+dataSet[,"NL12"] <- dataSet$time^4 * dataSet$activ
+dataSet[,"NL13"] <- dataSet$time^5 * dataSet$activ
+dataSet[,"NL14"] <- dataSet$time^6 * dataSet$activ
+dataSet[,"NL15"] <- dataSet$time^7 * dataSet$activ
+dataSet[,"NL16"] <- dataSet$time^8 * dataSet$activ
+dataSet[,"NL17"] <- dataSet$time^9 * dataSet$activ
+
+# normalized variables
+colMaximum <- numeric()
+for (i in 1:ncol(dataSet)){
+        colMaximum <- c(colMaximum,max(dataSet[,i]))
+        dataSet[,i] <- dataSet[,i]/colMaximum[i]
+}
+
+modOut <- lm(temp ~ time + activ +NL1+NL2+NL3+NL4+NL5+NL6+NL7+NL8+NL9
+             +NL10+NL11+NL12+NL13+NL14+NL15+NL16+NL17, data = dataSet)
+
+PredictTemperature <- function(time,activity){
+                tmp <- data.frame("day"=0,"time"=time,"temp"=0,"activ"=activity,
+                                "NL1"=time^2,
+                                "NL2"=time^3,
+                                "NL3"=time^4,
+                                "NL4"=time^5,
+                                "NL5"=time^6,
+                                "NL6"=time^7,
+                                "NL7"=time^8,
+                                "NL8"=time^9,
+                                "NL9"=time * activity,
+                                "NL10"=time^2* activity,
+                                "NL11"=time^3* activity,
+                                "NL12"=time^4* activity,
+                                "NL13"=time^5* activity,
+                                "NL14"=time^6* activity,
+                                "NL15"=time^7* activity,
+                                "NL16"=time^8* activity,
+                                "NL17"=time^9* activity)
+                for (i in 1:ncol(tmp)){
+                        tmp[,i] <- tmp[,i]/colMaximum[i]
+                }
+                tmp
+                out <- predict.lm(modOut,tmp)*colMaximum[3]
+                names(out) <- NULL
+                out
+}
+```
+```{r}
+time <- 1430
+activity <- 0
+beaverTemp <- PredictTemperature(time=time,activity=activity)
+paste("The internal temperature of a",ifelse(activity==1,"active","sleeping"),
+      "beaver is",beaverTemp,"degrees Celsius.")
+```
+
+---
+## Now Presenting 
+![4](assets/img/beaver.png)
+### [*The Virtual Beaver Thermometer*](http://matthewmsteele.shinyapps.io/beaverThermometer/)
