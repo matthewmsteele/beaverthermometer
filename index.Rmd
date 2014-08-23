@@ -28,9 +28,9 @@ Who Hasn't?
 
 ---
 
-### But in the the past the answer to that question has always involved trapsing through the woods for hours on end. 
+### But in the the past the answer to that question has always involved traipsing through the woods for hours on end. 
 
-And when you finally find one of the ***furry little rascals***, you have the unpleasant task in front of you of getting the vermit to open its mouth and say "**Ahhhhhhhhhh**!"
+And when you finally find one of the ***furry little rascals***, you have the unpleasant task in front of you of getting the varmint to open its mouth and say "**Ahhhhhhhhhh**!"
 
 --- .class #id 
 
